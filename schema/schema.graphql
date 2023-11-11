@@ -1,0 +1,9 @@
+scalar AorB
+
+type Response {
+  aob: AorB
+}
+
+type Query {
+  q1: Response!
+}

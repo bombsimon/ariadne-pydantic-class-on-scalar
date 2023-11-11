@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "ariadne-pydantic-class-on-scalar"
+version = "0.1.0"
+description = ""
+authors = ["Simon Sawert <simon@sawert.se>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+ariadne-codegen = "^0.9.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ariadne-codegen]
+queries_path = "./schema/query"
+schema_path = "./schema/schema.graphql"
+target_package_path = "./example/"
+
+[tool.ariadne-codegen.scalars.AorB]
+type = "scalars.AorB"
+
+[tool.ariadne-codegen.scalars.A]
+type = "scalars.A"
+serialize = "scalars.serialize_aob"
+
+[tool.ariadne-codegen.scalars.B]
+type = "scalars.B"
+serialize = "scalars.serialize_aob"
