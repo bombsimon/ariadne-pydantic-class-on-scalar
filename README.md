@@ -40,3 +40,25 @@ from c import C
 ```
 
 Reproduce by running `poetry run python pydantic_only/a.py`
+
+## Potential fixes
+
+So far I've found 2 alternative solutions.
+
+### Use Pydantic's `BaseModel`
+
+Instead of using `dataclass` classes it would be fixed by using Pydantic's
+`BaseModel` instead. Of course I would still need to import the class for it to
+be known and cannot put it behind `TYPE_CHECKING`.
+
+`poetry run python fix_1/a.py`
+
+### Import `C` wherever `B` is referred
+
+By ensuring `C` is in scope wherever `B` is being used also seems to fix the
+issue. This might be suitable for some projects but since this stems from using
+`ariadne-codegen` that would be in every file in
+[`grpahql_client`](example/graphql_client) that references `B` which in my case
+is a lot (and in generated code outside my control).
+
+`poetry run python fix_2/a.py`

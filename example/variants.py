@@ -1,6 +1,8 @@
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from other import C
+if TYPE_CHECKING:
+    from other import C
 
 
 @dataclass
