@@ -12,7 +12,7 @@ setting up the types.
 
 In this example, the reference is:
 
-`get_q1.GetQ1Q1` -> `scalars.AoB` -> `variants.A` -> `conditional.C`
+`get_q1.GetQ1Q1` -> `scalars.AoB` -> `variants.A` -> `other.C`
 
 `C` is not loaded or in scope when we import `GetQ1Q1` so we will get
 [pydantic.errors.PydanticUndefinedAnnotation](https://docs.pydantic.dev/2.4/errors/usage_errors/#undefined-annotation).
@@ -25,3 +25,18 @@ For further information visit https://errors.pydantic.dev/2.4/u/undefined-annota
 ```
 
 Reproduce by running `poetry run python example/example.py`
+
+## Pydantic only
+
+This is an issue with how Pydantic work and it's possible to recreate the
+issue with Pydantic only in a smaller example which is in the
+[`pydantic_only`](pydantic_only) directory.
+
+However, this one is a bit easier to solve by simply adding this in
+[`a.py`](pydantic_only/a.py):
+
+```python
+from c import C
+```
+
+Reproduce by running `poetry run python pydantic_only/a.py`
